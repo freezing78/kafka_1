@@ -54,12 +54,12 @@ KAFKA_REST_SCHEMA_REGISTRY_URL - адрес Schema Registry для работы 
 # Проверка работы кластера
 # Проверить статус контейнеров
 # Посмотреть логи и убедиться, что все контейнеры запущены без ошибок
-docker-compose ps
+docker-compose ps  
 # или
-docker ps
-Проверить через Kafka UI
-Зайти в Kafka UI через web и создать тестовый топик
-URL: http://localhost:48090
+docker ps  
+Проверить через Kafka UI  
+Зайти в Kafka UI через web и создать тестовый топик  
+URL: http://localhost:48090  
 
 # Работа с топиками через консоль
 # Подключитесь к контейнеру Kafka
