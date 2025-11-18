@@ -12,7 +12,7 @@ Apache Kafka Stack with Docker Compose
 Способ 2: Через командную строку
 mkdir kafka-cluster
 cd kafka-cluster
-# Скопируйте предоставленное содержимое в файл docker-compose.yml в текущей директории
+Скопируйте предоставленное содержимое в файл docker-compose.yml в текущей директории
 docker-compose up -d
 docker-compose ps
 
