@@ -4,7 +4,7 @@ study
 Apache Kafka Stack with Docker Compose
 Локальный стэк для разработки и тестирования Apache Kafka с Zookeeper и Web UI.
 
-Развертывание кластера^
+Развертывание кластера
 
 Способ 1: Через Portainer (Web-интерфейс для управления Docker Compose)
 Развертывание через Portainer на машине с IP 10.127.1.2
@@ -23,33 +23,33 @@ Kafka REST Proxy: http://localhost:48084
 Kafka Brokers: localhost:49092, localhost:49093, localhost:49094  
 
 # Компоненты стэка и параметры конфигурации
-Zookeeper (v7.5.0) - порт 42181
-ZOOKEEPER_CLIENT_PORT - порт для подключения клиентов (Kafka брокеров)
-ZOOKEEPER_TICK_TIME - базовый временной интервал в миллисекундах для heartbeat и таймаутов
+Zookeeper (v7.5.0) - порт 42181  
+ZOOKEEPER_CLIENT_PORT - порт для подключения клиентов (Kafka брокеров)  
+ZOOKEEPER_TICK_TIME - базовый временной интервал в миллисекундах для heartbeat и таймаутов  
 
-Kafka Broker (v7.5.0) - порты 49092, 49093, 49094
-KAFKA_BROKER_ID - уникальный идентификатор брокера в кластере
-KAFKA_ZOOKEEPER_CONNECT - адрес Zookeeper для координации кластера
-KAFKA_LISTENERS - интерфейсы и порты, которые слушает брокер (0.0.0.0 = все интерфейсы)
-KAFKA_ADVERTISED_LISTENERS - адреса, которые брокер сообщает клиентам для подключения
-KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR - фактор репликации для топика __consumer_offsets
-KAFKA_DEFAULT_REPLICATION_FACTOR - фактор репликации по умолчанию для новых топиков
+Kafka Broker (v7.5.0) - порты 49092, 49093, 49094  
+KAFKA_BROKER_ID - уникальный идентификатор брокера в кластере  
+KAFKA_ZOOKEEPER_CONNECT - адрес Zookeeper для координации кластера  
+KAFKA_LISTENERS - интерфейсы и порты, которые слушает брокер (0.0.0.0 = все интерфейсы)  
+KAFKA_ADVERTISED_LISTENERS - адреса, которые брокер сообщает клиентам для подключения  
+KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR - фактор репликации для топика __consumer_offsets  
+KAFKA_DEFAULT_REPLICATION_FACTOR - фактор репликации по умолчанию для новых топиков  
 
-Kafka UI (latest) - порт 48090
-KAFKA_CLUSTERS_0_NAME - имя кластера в UI
-KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS - подключение к Kafka брокерам
-KAFKA_CLUSTERS_0_ZOOKEEPER - подключение к Zookeeper (для мониторинга)
-KAFKA_CLUSTERS_0_SCHEMAREGISTRY - подключение к Schema Registry
+Kafka UI (latest) - порт 48090  
+KAFKA_CLUSTERS_0_NAME - имя кластера в UI  
+KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS - подключение к Kafka брокерам  
+KAFKA_CLUSTERS_0_ZOOKEEPER - подключение к Zookeeper (для мониторинга)  
+KAFKA_CLUSTERS_0_SCHEMAREGISTRY - подключение к Schema Registry  
 
-Schema Registry (7.5.0) - порт 48081
-SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS - Kafka брокеры для хранения схем
-SCHEMA_REGISTRY_HOST_NAME - имя хоста сервиса
-SCHEMA_REGISTRY_LISTENERS - HTTP endpoint для API Schema Registry
+Schema Registry (7.5.0) - порт 48081  
+SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS - Kafka брокеры для хранения схем  
+SCHEMA_REGISTRY_HOST_NAME - имя хоста сервиса  
+SCHEMA_REGISTRY_LISTENERS - HTTP endpoint для API Schema Registry  
 
-Kafka REST (7.5.0) - порт 48084
-KAFKA_REST_BOOTSTRAP_SERVERS - подключение к Kafka кластеру
-KAFKA_REST_LISTENERS - HTTP endpoint для REST API
-KAFKA_REST_SCHEMA_REGISTRY_URL - адрес Schema Registry для работы со схемами
+Kafka REST (7.5.0) - порт 48084  
+KAFKA_REST_BOOTSTRAP_SERVERS - подключение к Kafka кластеру  
+KAFKA_REST_LISTENERS - HTTP endpoint для REST API  
+KAFKA_REST_SCHEMA_REGISTRY_URL - адрес Schema Registry для работы со схемами  
 
 # Проверка работы кластера
 # Проверить статус контейнеров
