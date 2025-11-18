@@ -100,5 +100,5 @@ BatchMessageConsumer - считывает минимум по 10 сообщен�
 native_kafka_producer.py  
 batch_consumer_rest.py  
 single_consumer_rest.py  
-message_schema.py  
-requirements.txt  
+message_schema.py (дополнение)  
+requirements.txt (дополнение)  
