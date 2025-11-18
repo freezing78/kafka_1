@@ -10,17 +10,17 @@ Apache Kafka Stack with Docker Compose
 Развертывание через Portainer на машине с IP 10.127.1.2
 
 Способ 2: Через командную строку
-mkdir kafka-cluster
-cd kafka-cluster
-Скопируйте предоставленное содержимое в файл docker-compose.yml в текущей директории
-docker-compose up -d
-docker-compose ps
+mkdir kafka-cluster  
+cd kafka-cluster  
+Скопируйте предоставленное содержимое в файл docker-compose.yml в текущей директории  
+docker-compose up -d  
+docker-compose ps  
 
 # Доступ к сервисам
-Kafka UI: http://localhost:48090
-Schema Registry: http://localhost:48081
-Kafka REST Proxy: http://localhost:48084
-Kafka Brokers: localhost:49092, localhost:49093, localhost:49094
+Kafka UI: http://localhost:48090  
+Schema Registry: http://localhost:48081  
+Kafka REST Proxy: http://localhost:48084  
+Kafka Brokers: localhost:49092, localhost:49093, localhost:49094  
 
 # Компоненты стэка и параметры конфигурации
 Zookeeper (v7.5.0) - порт 42181
