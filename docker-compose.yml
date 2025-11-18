@@ -1,0 +1,95 @@
+version: '3'
+services:
+  zookeeper111:
+    image: confluentinc/cp-zookeeper:7.5.0
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "42181:2181"
+      
+  kafka111:
+    image: confluentinc/cp-kafka:7.5.0
+    depends_on:
+      - zookeeper111
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper111:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka111:9092
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_DEFAULT_REPLICATION_FACTOR: 1
+    ports:
+      - "49092:9092"
+
+  kafka112:
+    image: confluentinc/cp-kafka:7.5.0
+    depends_on:
+      - zookeeper111
+    environment:
+      KAFKA_BROKER_ID: 2
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper111:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka112:9092
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_DEFAULT_REPLICATION_FACTOR: 1
+    ports:
+      - "49093:9092"
+
+  kafka113:
+    image: confluentinc/cp-kafka:7.5.0
+    depends_on:
+      - zookeeper111
+    environment:
+      KAFKA_BROKER_ID: 3
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper111:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka113:9092
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_DEFAULT_REPLICATION_FACTOR: 1
+    ports:
+      - "49094:9092"
+
+  schema-registry:
+    image: confluentinc/cp-schema-registry:7.5.0
+    depends_on:
+      - kafka111
+      - kafka112
+      - kafka113
+    ports:
+      - "48081:8081"
+    environment:
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: PLAINTEXT://kafka111:9092,PLAINTEXT://kafka112:9092,PLAINTEXT://kafka113:9092
+      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+      SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
+
+  kafka-rest-proxy:
+    image: confluentinc/cp-kafka-rest:7.5.0
+    depends_on:
+      - kafka111
+      - kafka112
+      - kafka113
+      - schema-registry
+    ports:
+      - "48084:8082"  # Изменен порт на 48084
+    environment:
+      KAFKA_REST_BOOTSTRAP_SERVERS: PLAINTEXT://kafka111:9092,PLAINTEXT://kafka112:9092,PLAINTEXT://kafka113:9092
+      KAFKA_REST_HOST_NAME: kafka-rest-proxy
+      KAFKA_REST_LISTENERS: http://0.0.0.0:8082
+      KAFKA_REST_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    hostname: kafka-ui
+    ports:
+      - "48090:8080"
+    environment:
+      KAFKA_CLUSTERS_0_NAME: local-cluster
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka111:9092,kafka112:9092,kafka113:9092
+      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper111:2181
+      KAFKA_CLUSTERS_0_SCHEMAREGISTRY: http://schema-registry:8081
+    depends_on:
+      - kafka111
+      - kafka112
+      - kafka113
+      - schema-registry
