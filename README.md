@@ -96,9 +96,9 @@ BatchMessageConsumer - считывает минимум по 10 сообщен�
 Обеспечить гарантии доставки сообщений
 Запуск приложений
 
-Для выполнения шагов 2, 3 и 4 запускайте файлы .py в PyCharm:
-native_kafka_producer.py
-batch_consumer_rest.py
-single_consumer_rest.py
-message_schema.py
-requirements.txt
+Для выполнения шагов 2, 3 и 4 запускайте файлы .py в PyCharm:  
+native_kafka_producer.py  
+batch_consumer_rest.py  
+single_consumer_rest.py  
+message_schema.py  
+requirements.txt  
